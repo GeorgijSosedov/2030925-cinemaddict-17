@@ -11,6 +11,7 @@ export default class BoardPresenter {
   taskListComponent = new TaskListView();
 
   init = (boardContainer) => {
+    const number = 3;
     this.boardContainer = boardContainer;
 
     render(this.boardComponent, this.boardContainer);
@@ -18,7 +19,7 @@ export default class BoardPresenter {
     render(this.taskListComponent, this.boardComponent.getElement());
     render(new TaskEditView(), this.taskListComponent.getElement());
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < number; i++) {
       render(new TaskView(), this.taskListComponent.getElement());
     }
 
