@@ -10,17 +10,18 @@ export default class BoardPresenter {
   boardComponent = new BoardView();
   taskListComponent = new TaskListView();
 
-  init = (boardContainer) => {
-    const number = 3;
+  init = (boardContainer, tasksModel) => {
     this.boardContainer = boardContainer;
+    this.tasksModel = tasksModel;
+    this.boardTasks = [...this.tasksModel.getTasks()];
 
     render(this.boardComponent, this.boardContainer);
     render(new SortView(), this.boardComponent.getElement());
     render(this.taskListComponent, this.boardComponent.getElement());
-    render(new TaskEditView(), this.taskListComponent.getElement());
+    render(new TaskEditView(this.boardTasks[0]), this.taskListComponent.getElement());
 
-    for (let i = 0; i < number; i++) {
-      render(new TaskView(), this.taskListComponent.getElement());
+    for (let i = 1; i < this.boardTasks.length; i++) {
+      render(new TaskView(this.boardTasks[i]), this.taskListComponent.getElement());
     }
 
     render(new ShowMoreButtonView(), this.boardComponent.getElement());

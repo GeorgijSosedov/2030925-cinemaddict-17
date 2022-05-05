@@ -1,4 +1,4 @@
-import { generateDescription,} from './utils';
+import { generateDescription} from './utils';
 import { generateTitle } from './utils';
 import { generateValue } from './utils';
 import { generateGenre } from './utils';
