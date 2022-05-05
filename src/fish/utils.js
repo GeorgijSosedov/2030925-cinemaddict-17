@@ -1,9 +1,19 @@
+import dayjs from 'dayjs';
+
 const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
+
+const humanizeTaskDueDate = (dueDate) => dayjs(dueDate).format('D MMMM');
+
+const isTaskExpired = (dueDate) => dueDate && dayjs().isAfter(dueDate, 'D');
+
+const isTaskRepeating = (repeating) => Object.values(repeating).some(Boolean);
+
+export {getRandomInteger, humanizeTaskDueDate, isTaskExpired, isTaskRepeating};
 
 export const generateTitle = () => {
   const titles = [
@@ -35,9 +45,9 @@ export const generateRating = () => {
 
 export const generateRelease = () => {
   const releases = [
-    '2016',
-    '2021',
-    '2022',
+    '5 april 2016',
+    '11 november 2021',
+    '1 may 2022',
   ];
 
   const randomIndex = getRandomInteger(0,releases.length - 1);
@@ -99,4 +109,83 @@ export const generateDescription = () => {
   return descriptions[randomIndex];
 };
 
+export const generateDirector = ()  => {
+  const directors = [
+    'Shawn Levy',
+    'Todd Phillips',
+    'Matthew Vaughn',
+    'Yeon Sang-ho',
+    'Johannes Roberts',
+  ];
+  const randomIndex = getRandomInteger(0,directors.length - 1);
 
+  return directors[randomIndex];
+};
+export const generateWriter = ()  => {
+  const writers =  [
+    'Matt Lieberman',
+    'Todd Phillips',
+    'Mark Millar',
+    'Joo-Suk Park',
+    'Johannes Roberts',
+  ];
+  const randomIndex = getRandomInteger(0,writers.length - 1);
+
+  return writers[randomIndex];
+};
+export const generateActor = () => {
+  const actors = [
+    'Ryan Reynolds',
+    'Jodie Comer',
+    'Lil Rel Howery',
+    'Miles Teller',
+    'Jonah Hill',
+    'Dave Lizewski',
+    'Mindy Macread',
+    'Seok-woo',
+    'Sang-hwa',
+    'Claire Redfield',
+    'Chris Redfield',
+  ];
+  const randomIndex = getRandomInteger(0,actors.length - 1);
+
+  return actors[randomIndex];
+};
+export const generateCountry = () => {
+  const country = [
+    'USA',
+    'Russia',
+    'Japan',
+    'Canada',
+    'China',
+    'Italy',
+    'Germany',
+    'France',
+    'Africa',
+    'Poland',
+  ];
+  const randomIndex = getRandomInteger(0,country.length - 1);
+
+  return country[randomIndex];
+};
+
+export const generateRate = () => {
+  const rates = [
+    '0+',
+    '18',
+    '6+',
+    '12+',
+    '16+',
+  ];
+  const randomIndex = getRandomInteger(0,rates.length - 1);
+
+  return rates[randomIndex];
+};
+export const filmDescritptionGeneral = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.';
+
+export const emojiNames = [
+  'smile',
+  'sleeping',
+  'puke',
+  'angry'
+];
