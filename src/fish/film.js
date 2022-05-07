@@ -7,6 +7,7 @@ import { generateRating } from './utils';
 import { generateRelease } from './utils';
 import { comment } from './comments';
 import generalDescription from './utils.js';
+import { FILMS_COUNT } from './utils';
 
 export const film = {
   id: 1,
@@ -25,3 +26,6 @@ export const film = {
   generalDescription: generalDescription,
   comments: [comment.id1,comment.id2,comment.id3,comment.id4],
 };
+
+export const generateFilms = () =>
+  Array.from({length: FILMS_COUNT}, (value, index) => film(index));
