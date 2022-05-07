@@ -1,7 +1,7 @@
-export default class FilmsModel  {
-  constructor(films) {
-    this.films = films;
-  }
+import {generateFilm} from '../fish/task.js';
+
+export default class FilmsModel {
+  films = Array.from({length: 5}, generateFilm);
 
   getFilms = () => this.films;
 }

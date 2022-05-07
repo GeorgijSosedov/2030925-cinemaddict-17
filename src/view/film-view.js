@@ -1,12 +1,12 @@
-import { film } from '../fish/film.js';
+
 import {createElement} from '../render.js';
-import {humanizeTaskDueDate, isFilmExpired, isFilmRepeating} from '../utils.js';
+import {humanizeFilmDate, isFilmExpired, isFilmRepeating} from '../utils.js';
 
 const createFilmTemplate = (task) => {
   const {color, description, dueDate, repeating, isArchive, isFavorite} = task;
 };
-const date = dueDate !== null
-  ? humanizeTaskDueDate(dueDate)
+const film = dueDate !== null
+  ? humanizeFilmDate(dueDate)
   : '';
 
   const deadlineClassName = isFilmExpired(dueDate)
@@ -66,8 +66,7 @@ const date = dueDate !== null
       </div>
     </article>`
   );
-  };
-
+    };
   export default class FilmView {
     constructor(film) {
       this.film = film;
@@ -78,3 +77,5 @@ const date = dueDate !== null
     }
 
     getElement() {
+
+    }

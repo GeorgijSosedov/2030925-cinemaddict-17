@@ -9,7 +9,7 @@ import { comment } from './comments';
 import generalDescription from './utils.js';
 import { FILMS_COUNT } from './utils';
 
-export const film = {
+export const generateFilm = {
   id: 1,
   poster: generatePoster,
   title: generateTitle,
@@ -28,4 +28,5 @@ export const film = {
 };
 
 export const generateFilms = () =>
-  Array.from({length: FILMS_COUNT}, (value, index) => film(index));
+  Array.from({length: FILMS_COUNT}, (randomIndex) => generateFilm(randomIndex));
+

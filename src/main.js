@@ -11,5 +11,6 @@ const boardPresenter = new BoardPresenter();
 
 render(new NewTaskButtonView(), siteHeaderElement);
 render(new FilterView(), siteMainElement);
+
 boardPresenter.init(siteMainElement, filmsModel);
 
