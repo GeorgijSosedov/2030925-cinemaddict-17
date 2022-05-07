@@ -1,8 +1,8 @@
 import { film } from '../fish/film.js';
 import {createElement} from '../render.js';
-import {humanizeTaskDueDate, isTaskExpired, isTaskRepeating} from '../utils.js';
+import {humanizeTaskDueDate, isFilmExpired, isFilmRepeating} from '../utils.js';
 
-const createTaskTemplate = (task) => {
+const createFilmTemplate = (task) => {
   const {color, description, dueDate, repeating, isArchive, isFavorite} = task;
 };
 const date = dueDate !== null
@@ -74,7 +74,7 @@ const date = dueDate !== null
     }
 
     getTemplate() {
-      return createTaskTemplate(this.film);
+      return createFilmTemplate(this.film);
     }
 
     getElement() {

@@ -7,13 +7,12 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const humanizeTaskDueDate = (dueDate) => dayjs(dueDate).format('D MMMM');
+const humanizeCommentDate = (commentDate) => dayjs(commentDate).format('YYYY/MM/DD HH:mm');
 
-const isTaskExpired = (dueDate) => dueDate && dayjs().isAfter(dueDate, 'D');
+const humanizeFilmDate = (date) => dayjs(date).format('DD MMMM YYYY');
 
-const isTaskRepeating = (repeating) => Object.values(repeating).some(Boolean);
 
-export {getRandomInteger, humanizeTaskDueDate, isTaskExpired, isTaskRepeating};
+export {getRandomInteger, humanizeFilmDate,humanizeCommentDate};
 
 export const generateTitle = () => {
   const titles = [
@@ -189,3 +188,5 @@ export const emojiNames = [
   'puke',
   'angry'
 ];
+
+export const FILMS_COUNT = 5;
