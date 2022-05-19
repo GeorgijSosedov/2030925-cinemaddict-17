@@ -1,10 +1,10 @@
 import {createElement} from '../render.js';
 
-const createBoardTemplate = () => '<section class="board container"></section>';
+const createFilmTemplate = () => '<section class="board container"></section>';
 
-export default class BoardView {
+export default class FilmView {
   getTemplate() {
-    return createBoardTemplate();
+    return createFilmTemplate();
   }
 
   getElement() {
