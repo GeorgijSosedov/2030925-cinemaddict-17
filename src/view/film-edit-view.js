@@ -61,7 +61,7 @@ const createFilmEditTemplate = (film = {}) => {
     color = 'black'
     ? 'card--repeat'
     : '';
-
+  
 const colorsTemplate = createFilmEditColorsTemplate(color);
 
 const dateTemplate = createFilmEditDateTemplate(dueDate);
@@ -112,20 +112,25 @@ const dateTemplate = createFilmEditDateTemplate(dueDate);
       </form>
     </article>`
   );
-
-export default class FilmEditView {
-  constructor(generateFilm) {
-    this.generateFilm = film;
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+export default class FilmEditView {
+  #element = null
+  #generateFilm = null
+
+  constructor(generateFilm) {
+    this.#generateFilm = film;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return createFilmEditTemplate(this.generateFilm);
+    return createFilmEditTemplate(this.#generateFilm);
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
+

@@ -25,6 +25,24 @@ const film = dueDate !== null
     ? 'card__btn--favorites card__btn--disabled'
     : 'card__btn--favorites';
 
+    export default class FilmView {
+      #element = null;
+  
+      get template() {
+      return createFilmTemplate;
+      }
+  
+      get element() {
+        if (!this.#element) {
+          this.#element = createElement(this.template);
+        }
+      };
+      
+      removeElement() {
+        this.#element = null;
+      }
+    };
+
     return (
       `<article class="card card--${color} ${deadlineClassName} ${repeatClassName}">
       <div class="card__form">
@@ -65,17 +83,5 @@ const film = dueDate !== null
         </div>
       </div>
     </article>`
-  );
-    };
-  export default class FilmView {
-    constructor(film) {
-      this.film = film;
-    }
-
-    getTemplate() {
-      return createFilmTemplate(this.film);
-    }
-
-    getElement() {
-
-    }
+    )
+    
