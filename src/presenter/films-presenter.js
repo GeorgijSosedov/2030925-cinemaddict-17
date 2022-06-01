@@ -32,10 +32,49 @@ export default class FilmPresenter {
     #renderFilm = (film) => {
       const filmComponent = new FilmView(film);
   
-      render(filmComponent, this.#filmListComponent.element);
+
+  
+  
+  const filmEditComponent = new FilmEditView(film);
+
+    const replaceCardToForm = () => {
+      this.#filmListComponent.element.replaceChild(filmEditComponent.element, filmComponent.element);
     };
+
+    const replaceFormToCard = () => {
+      this.#filmListComponent.element.replaceChild(filmComponent.element, filmEditComponent.element);
+    };
+
+    filmComponent.element.querySelector('.card__btn--edit').addEventListener('click', () => {
+      replaceCardToForm();
+    });
+
+    filmEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      replaceFormToCard();
+    });
+
+    render(filmComponent, this.#filmListComponent.element);
+  };
+
+  const onEscKeyDown = (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      evt.preventDefault();
+      replaceFormToCard();
+      document.removeEventListener('keydown', onEscKeyDown);
+    }
   };
   
+  filmComponent.element.querySelector('.card__btn--edit').addEventListener('click', () => {
+    replaceCardToForm();
+    document.addEventListener('keydown', onEscKeyDown);
+  });
+
+  filmEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    replaceFormToCard();
+    document.removeEventListener('keydown', onEscKeyDown);
+  });
   /*
     const filmsSectionElement = this.filmsContainer.querySelector('.films');
     const filmsListElement = filmsSectionElement.querySelector('.films-list');
