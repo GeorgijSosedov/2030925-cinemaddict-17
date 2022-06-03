@@ -93,6 +93,6 @@ export default class FilmPresenter {
         const commentsContainer = filmDetailsPopup.getElement().querySelector('.film-details__comments-list');
         for (const comment of popupFilm.comments) {
           render(new CommentView(this.comments[comment]), commentsContainer);
-        }
+        }a
       }
     };
