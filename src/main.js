@@ -12,7 +12,7 @@ const siteMainElement = document.querySelector('.main');
 const siteHeaderElement = document.querySelector('.header');
 
 const profilePresenter = new ProfilePresenter();
-const boardPresenter = new BoardPresenter();
+const boardPresenter = new BoardPresenter(siteMainElement,filmsModel);
 
 profilePresenter.init(siteHeaderElement, profileRating);
-boardPresenter.init(siteMainElement, filmsModel);
+boardPresenter.init();
