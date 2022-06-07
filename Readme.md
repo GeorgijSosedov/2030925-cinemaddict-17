@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
-* Студент: [Георгий Соседов](https://up.htmlacademy.ru/ecmascript/17/user/2030925).
-* Наставник: Михаил Кислый.
+* Студент: [Андрей Деев](https://up.htmlacademy.ru/ecmascript/17/user/518707).
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/smart-grizzly).
 
 ---
 
@@ -48,5 +48,5 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на профессиональном курсе «[JavaScript. Архитектура клиентских приложений](https://htmlacademy.ru/intensive/ecmascript)» от [HTML Academy](https://htmlacademy.ru).
 
-[check-image]: https://github.com/htmlacademy-ecmascript/2030925-cinemaddict-17/workflows/Project%20check/badge.svg?branch=master
-[check-url]: https://github.com/htmlacademy-ecmascript/2030925-cinemaddict-17/actions
+[check-image]: https://github.com/htmlacademy-ecmascript/518707-cinemaddict-17/workflows/Project%20check/badge.svg?branch=master
+[check-url]: https://github.com/htmlacademy-ecmascript/518707-cinemaddict-17/actions

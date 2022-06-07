@@ -3,21 +3,19 @@ import {createElement} from '../render.js';
 const createTaskListTemplate = () => '<div class="board__tasks"></div>';
 
 export default class TaskListView {
-  #element = null
-  
-  get template() {
+  getTemplate() {
     return createTaskListTemplate();
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
     }
 
-    return this.#element;
+    return this.element;
   }
 
   removeElement() {
-    this.#element = null;
+    this.element = null;
   }
 }

@@ -1,10 +1,10 @@
 import {createElement} from '../render.js';
 
-const createNewTaskBundleTemplate = () => '<button class="control__button">+ ADD NEW TASK</button>';
+const createBoardTemplate = () => '<section class="board container"></section>';
 
-export default class NewTaskBundleView {
+export default class BoardView {
   getTemplate() {
-    return createNewTaskBundleTemplate();
+    return createBoardTemplate();
   }
 
   getElement() {
