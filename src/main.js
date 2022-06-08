@@ -1,19 +1,18 @@
-import NewTaskButtonView from './view/new-task-button-view.js';
-import {render} from './render.js';
-import FilterView from './view/filter-view.js';
-import BoardPresenter from './presenter/films-presenter.js';
+import ProfilePresenter from './presenter/profile-presenter.js';
+import BoardPresenter from './presenter/board-presenter.js';
+
 import FilmsModel from './model/films-model.js';
+
+import {getRandomProfileRating} from './fish/profile-rating.js';
+const profileRating = getRandomProfileRating();
+
+const filmsModel = new FilmsModel().films;
+
 const siteMainElement = document.querySelector('.main');
-const siteHeaderElement = siteMainElement.querySelector('.main__control');
+const siteHeaderElement = document.querySelector('.header');
 
-const filmsModel = new FilmsModel();
-const boardPresenter = new BoardPresenter();
+const profilePresenter = new ProfilePresenter();
+const boardPresenter = new BoardPresenter(siteMainElement,filmsModel);
 
-render(new NewTaskButtonView(), siteHeaderElement);
-render(new FilterView(), siteMainElement);
-
-boardPresenter.init(siteMainElement, filmsModel);
-
-/*
-a
-*/
+profilePresenter.init(siteHeaderElement, profileRating);
+boardPresenter.init();
