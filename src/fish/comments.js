@@ -1,35 +1,32 @@
-export const generateComment = () => {
-  const comment = [
-    {
-      id: 1,
-      author: 'Mr.Bebra',
-      text: 'В фильме нет негров,поэтому 1',
-      date: '2022-05-11T18:23:33.554Z"',
-      emotion: 'angry',
-    },
-    {
-      id: 2,
-      author: 'Gera Marmeladov',
-      text: 'Cras aliquet varius magna, non porta ligula feugiat eget.',
-      date: '2022-05-11T15:47:33.554Z',
-      emotion: 'smile',
-    },
-    {
-      id: 3,
-      author: 'Hello World',
-      text: 'Aliquam id orci ut lectus varius viverra.',
-      date: '2022-05-11T17:30:33.554Z',
-      emotion: 'sleeping',
-    },
-    {
-      id: 4,
-      author: 'Anonimous',
-      text: 'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
-      date: '2022-05-11T22:50:33.554Z',
-      emotion: 'puke',
-    },
-  ];
-  return comment;
-};
+import {getRandomInteger, getRandomArrayElement, getRandomDate} from './utils.js';
 
+const TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus';
+const EMOTIONS = ['smile', 'sleeping', 'puke', 'angry'];
+const COMMENT_AUTHORS = [
+  'Tim Burton',
+  'Francis Ford Coppola',
+  'Frank Darabont',
+  'Anonimous',
+  'Bryan Singer',
+  'Christopher Nolan',
+  'Eric Toledano',
+  'Gera Marmeladov',
+  'Dwayne Johnson',
+  'Mr.Bebra',
+  'Rachel McAdams',
+  'Michelle Rodriguez',
+  'Tom Hanks',
+  'Hello World',
+  'Tom Hardy',
+];
+
+export const generateComment = (commentId) => (
+  {
+    id: commentId,
+    author: getRandomArrayElement(COMMENT_AUTHORS),
+    comment: `${TEXT.split('. ')[getRandomInteger(0, TEXT.split('. ').length - 1)]}.`,
+    date: getRandomDate(new Date(2010, 1, 1), new Date),
+    emotion: getRandomArrayElement(EMOTIONS)
+  }
+);
 
