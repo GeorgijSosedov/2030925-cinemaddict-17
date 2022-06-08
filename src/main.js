@@ -14,3 +14,6 @@ render(new FilterView(), siteMainElement);
 
 boardPresenter.init(siteMainElement, filmsModel);
 
+/*
+a
+*/
