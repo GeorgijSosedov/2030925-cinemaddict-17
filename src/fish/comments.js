@@ -29,4 +29,3 @@ export const generateComment = (commentId) => (
     emotion: getRandomArrayElement(EMOTIONS)
   }
 );
-

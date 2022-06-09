@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
 * Студент: [Георгий Соседов](https://up.htmlacademy.ru/ecmascript/17/user/2030925).
-* Наставник: Михаил Кислый.
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/smart-grizzly).
 
 ---
 
