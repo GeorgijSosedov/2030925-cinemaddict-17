@@ -1,6 +1,6 @@
 import ProfilePresenter from './presenter/profile-presenter.js';
 import BoardPresenter from './presenter/board-presenter.js';
-
+import { render } from './framework/render.js';
 import FilmsModel from './model/films-model.js';
 
 import {getRandomProfileRating} from './fish/profile-rating.js';

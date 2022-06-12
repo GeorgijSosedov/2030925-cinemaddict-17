@@ -7,6 +7,7 @@ import FilmCardView from '../view/film-card-view.js';
 import PopupView from '../view/popup-view.js';
 import ShowMoreButtonView from '../view/new-task-bundle.js';
 import NoFilmView from '../view/no-film-view.js';
+import { remove } from '../framework/render.js';
 
 const FILMS_COUNT_PER_CLICK = 5
 
@@ -39,13 +40,13 @@ export default class BoardPresenter {
 if (this.boardTasks.length > FILMS_COUNT_PER_CLICK) {
   render (this.showMoreButtonComponent,this.filmsComponent.element);
   
-  this.showMoreButtonComponent.element.addEventListener ('click',this.#handleShowMoreButtonClick);
+  this.showMoreButtonComponent.setClickHandler(this.#handleShowMoreButtonClick);
 }
 
     }
   };
-  #handleShowMoreButtonClick = (evt) => {
-    evt.preventDefault();
+  #handleShowMoreButtonClick = () => {
+ 
     this.boardTask
     .slice(this.#renderedFilmsCount,this.#renderedFilmsCount + FILMS_COUNT_PER_CLICK)
     .forEach((film) => this.#renderFilmCard(film));
@@ -53,8 +54,7 @@ if (this.boardTasks.length > FILMS_COUNT_PER_CLICK) {
     this.#renderedFilmsCount += FILMS_COUNT_PER_CLICK
 
     if (this.#renderedFilmsCount >= boardTasks.length) {
-      this.showMoreButtonComponent.element.remove();
-      this.showMoreButtonComponent.removeElement();
+      remove(this.showMoreButtonComponent)
     }
   };
 
@@ -89,10 +89,12 @@ if (this.boardTasks.length > FILMS_COUNT_PER_CLICK) {
       document.removeEventListener('keydown', onEscKeyDown);
     }
 
-    filmComponent.element.querySelector('.film-card__link').addEventListener('click', openPopup);
-  
+    filmComponent.setEditClickHandler (() => {
+    openPopup
+    document.addEventListener ('keydown', onEscKeyDown)
     render(filmComponent, this.filmsListContainerElement);
-  };
+  });
+};
 };
 
 
@@ -102,8 +104,8 @@ if (this.boardTasks.length > FILMS_COUNT_PER_CLICK) {
 
 
 
-
 /*
+СПРОСИТЬ ПРО BOARD PRESENTER
 render(new FilterView(), this.boardContainer);
 render(new SortView(), this.boardContainer);
 render(this.filmsComponent, this.boardContainer);
@@ -115,4 +117,5 @@ for (let i = 0; i < Math.min(filmsModel.length,FILMS_COUNT_PER_CLICK); i++) {
 if (this.boardTask.length > FILMS_COUNT_PER_CLICK) {
   render (this.#showMoreButtonComponent,this.#filmsComponent.element)
   this.#showMoreButtonComponent.element.addEventListener('click', this.#handleShowMoreButtonClick); 
-  */
+    element.querySelector('.film-card__link').addEventListener('click', 
+*/
