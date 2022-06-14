@@ -1,13 +1,16 @@
-import {createElement} from '../render.js';
-import {getFormatedRuntime, getDescriptionPreview} from '../fish/utils.js';
-import dayjs from 'dayjs';
+import AbstractView from '../framework/view/abstract-view.js';
+import {getFormatedRuntime, getDescriptionPreview, getFormatedDate} from '../utils/common.js';
+import {DateFormat} from '../utils/const.js';
+
+const SHAKE_CLASS_NAME = 'shake';
+const SHAKE_ANIMATION_TIMEOUT = 600;
 
 const createFilmCardTemplate = (film) => {
   const {poster, title, totalRating, genre, runtime, release, description} = film.filmInfo;
   const comments = film.comments;
   const {watchlist, alreadyWatched, favorite} = film.userDetails;
 
-  const descriprionPreview = getDescriptionPreview(description);
+  const descriptionPreview = getDescriptionPreview(description);
   const watchlistClassName = watchlist ? 'film-card__controls-item--active' : '';
   const alreadyWatchedClassName = alreadyWatched ? 'film-card__controls-item--active' : '';
   const favoriteClassName = favorite ? 'film-card__controls-item--active' : '';
@@ -18,12 +21,12 @@ const createFilmCardTemplate = (film) => {
         <h3 class="film-card__title">${title}</h3>
         <p class="film-card__rating">${totalRating}</p>
         <p class="film-card__info">
-          <span class="film-card__year">${dayjs(release.date).format('YYYY')}</span>
+          <span class="film-card__year">${getFormatedDate(release.date, DateFormat.FILM_CARD_RELEASE_DATE)}</span>
           <span class="film-card__duration">${getFormatedRuntime(runtime)}</span>
           <span class="film-card__genre">${genre[0]}</span>
         </p>
         <img src="${poster}" alt="${title}" class="film-card__poster">
-        <p class="film-card__description">${descriprionPreview}</p>
+        <p class="film-card__description">${descriptionPreview}</p>
         <span class="film-card__comments">${comments.length} comments</span>
       </a>
       <div class="film-card__controls">
@@ -35,23 +38,66 @@ const createFilmCardTemplate = (film) => {
   );
 };
 
-export default class FilmCardView {
-  #element;
-  #film;
+export default class FilmCardView extends AbstractView {
+  #film = null;
 
   constructor (film) {
+    super();
     this.#film = film;
   }
 
-  get #template() {
+  get template() {
     return createFilmCardTemplate(this.#film);
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.#template);
-    }
+  shakeElement = (element, callback) => {
+    element.classList.add(SHAKE_CLASS_NAME);
+    setTimeout(() => {
+      element.classList.remove(SHAKE_CLASS_NAME);
+      callback?.();
+    }, SHAKE_ANIMATION_TIMEOUT);
+  };
 
-    return this.#element;
-  }
+  setClickHandler = (callback) => {
+    this._callback.click = callback;
+    this.element.querySelector('.film-card__link').addEventListener('click', this.#clickHandler);
+  };
+
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.click();
+  };
+
+  setWatchlistClickHandler = (callback) => {
+    this._callback.watchlistClick = callback;
+    this.element.querySelector('.film-card__controls-item--add-to-watchlist')
+      .addEventListener('click', this.#watchlistClickHandler);
+  };
+
+  setHistoryClickHandler = (callback) => {
+    this._callback.historyClick = callback;
+    this.element.querySelector('.film-card__controls-item--mark-as-watched')
+      .addEventListener('click', this.#historyClickHandler);
+  };
+
+  setFavoriteClickHandler = (callback) => {
+    this._callback.favoriteClick = callback;
+    this.element.querySelector('.film-card__controls-item--favorite')
+      .addEventListener('click', this.#favoriteClickHandler);
+  };
+
+  #watchlistClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.watchlistClick();
+  };
+
+  #historyClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.historyClick();
+  };
+
+  #favoriteClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.favoriteClick();
+  };
 }
