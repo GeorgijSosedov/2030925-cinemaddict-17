@@ -1,4 +1,4 @@
-import AbstractView from '../framework/view/abstract-view.js';
+import {createElement} from '../render.js';
 
 const createTaskEditTemplate = () => (
   `<article class="card card--edit card--yellow card--repeat">
@@ -193,24 +193,20 @@ const createTaskEditTemplate = () => (
   </article>`
 );
 
-export default class TaskEditView extends AbstractView {
-  
-  constructor () {
-    super()
-  }
-
+export default class TaskEditView {
   getTemplate() {
     return createTaskEditTemplate();
   }
 
-  setFormSubmitHandler = (callback) => {
-    this._callback.formSubmit = callback;
-    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
-  };
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
+    }
 
-  #formSubmitHandler = (evt) => {
-    evt.preventDefault();
-    this._callback.formSubmit();
-  };
+    return this.element;
+  }
 
-};
+  removeElement() {
+    this.element = null;
+  }
+}

@@ -1,19 +1,21 @@
-import AbstractView from '../framework/view/abstract-view.js';
+import {createElement} from '../render.js';
 
 const createNewTaskBundleTemplate = () => '<button class="control__button">+ ADD NEW TASK</button>';
 
-export default class NewTaskBundleView extends AbstractView {
+export default class NewTaskBundleView {
   getTemplate() {
     return createNewTaskBundleTemplate();
   }
 
-setClickHandler = (callback) => {
-  this._callback.click = callback;
-    this.element.addEventListener('click', this.#clickHandler);
-  };
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
+    }
 
-  #clickHandler = (evt) => {
-    evt.preventDefault();
-    this._callback.click();
-  };
-};
+    return this.element;
+  }
+
+  removeElement() {
+    this.element = null;
+  }
+}
